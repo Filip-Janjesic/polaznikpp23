@@ -1,9 +1,9 @@
 <?php
 
-class IndexController
+class IndexController extends Controller
 {
     public function index()
     {
-        echo 'Hello iz kontrolera';
+        $this->view->render('index');
     }
 }
