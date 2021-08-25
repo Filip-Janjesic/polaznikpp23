@@ -1,4 +1,4 @@
-<?php   
+<?php 
 
 class Request
 {
@@ -10,6 +10,7 @@ class Request
         }else if (isset($_SERVER['REQUEST_URI'])){
             $ruta = $_SERVER['REQUEST_URI'];
         }
+        // dodati bilo što gdje može biti taj podataka
         return $ruta;
     }
 }

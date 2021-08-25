@@ -27,5 +27,7 @@ spl_autoload_register(function($klasa){
         }
     }
 });
-//echo '<pre>'
+//echo '<pre>';
+//print_r($_SERVER);
+//echo '</pre>';
 App::start();
