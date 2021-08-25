@@ -10,7 +10,8 @@ $putanje = implode(
 PATH_SEPARATOR,
     [
         BP_APP . 'model',
-        BP_APP . 'controller'
+        BP_APP . 'controller',
+        BP_APP . 'core'
     ]
 );
 
