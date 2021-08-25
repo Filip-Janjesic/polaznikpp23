@@ -20,12 +20,12 @@ set_include_path($putanje);
 spl_autoload_register(function($klasa){
     $putanje = explode(PATH_SEPARATOR,get_include_path());
     foreach($putanje as $p){
-        echo $klasa . ' - ' . $p . '<br />';
+        //echo $klasa . ' - ' . $p . '<br />';
         if(file_exists($p . DIRECTORY_SEPARATOR . $klasa . '.php')){
             include $p . DIRECTORY_SEPARATOR . $klasa . '.php';
             break;
         }
     }
 });
-
+//echo '<pre>'
 App::start();
