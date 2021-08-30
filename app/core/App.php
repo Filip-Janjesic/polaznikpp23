@@ -43,4 +43,5 @@ class App
         $config = include BP_APP . 'konfiguracija.php';
         return $config[$kljuc];
     }
+
 }

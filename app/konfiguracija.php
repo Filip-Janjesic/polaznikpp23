@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'nazivApp'=>'Edunova APP'
+    'nazivApp'=>'Edunova APP',
+    'url'=>'http://polaznikpp23.xyz/'
 ];
