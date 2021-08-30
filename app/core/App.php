@@ -37,4 +37,10 @@ class App
                 $klasa . '->' . $metoda;
         }
     }
+
+    public static function config($kljuc)
+    {
+        $config = include BP_APP . 'konfiguracija.php';
+        return $config[$kljuc];
+    }
 }
