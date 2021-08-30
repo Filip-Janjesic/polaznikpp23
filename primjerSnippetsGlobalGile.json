@@ -1,0 +1,13 @@
+{
+	"Konfiguracija": {
+		"prefix": ["config"],
+		"body": ["<?=App::config('$1')?>"],
+		"description": "Unesi ključ pod kojim se nalazi vrijednost u konfiguraciji"
+	},
+	"Drugi": {
+		"prefix": ["drugi"],
+		"body": ["Pero $1 Marko"],
+		"description": "Primjer drugog"
+	}
+
+}

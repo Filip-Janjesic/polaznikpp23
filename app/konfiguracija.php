@@ -2,5 +2,5 @@
 
 return [
     'nazivApp'=>'Edunova APP',
-    'url'=>'http://polaznikpp23.xyz/'
+    'url'=>'http://edunovapp23.xyz/'
 ];
