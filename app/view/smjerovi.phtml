@@ -1,1 +1,10 @@
-Ovdje će biti smjerovi
+
+<?php foreach($smjerovi as $smjer): ?>
+
+<div class="callout">
+    <h1><?=$smjer->naziv?></h1>
+    <?=$smjer->cijena?>
+</div>
+
+
+<?php endforeach; ?>
