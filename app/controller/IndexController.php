@@ -18,4 +18,9 @@ class IndexController extends Controller
             'podaci' => [1,2,3,2,2,2,3]
         ]);
     }
+    public function smjerovi()
+    {
+        $this->view->render('smjerovi');
+    }
+
 }
