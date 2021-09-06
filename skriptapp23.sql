@@ -5,6 +5,22 @@ create database
 
 use edunovapp23;
 
+create table operater(
+    sifra int not null primary key auto_increment,
+    email varchar(50) not null,
+    lozinka char(60) not null,
+    ime varchar(50) not null,
+    prezime varchar(50) not null,
+    uloga varchar (10) not null
+);
+
+# lozinka je a
+insert into operater(email,lozinka,ime,prezime,uloga)
+('admin@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
+'Administrator','Edunova','admin'),
+('oper@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
+'operater','Edunova','oper');
+
 # NULL je nepoznavanje vrijednost
 create table smjer(
     sifra int not null primary key auto_increment,
