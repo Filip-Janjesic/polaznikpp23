@@ -15,7 +15,7 @@ create table operater(
 );
 
 # lozinka je a
-insert into operater(email,lozinka,ime,prezime,uloga)
+insert into operater(email,lozinka,ime,prezime,uloga) values
 ('admin@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
 'Administrator','Edunova','admin'),
 ('oper@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
