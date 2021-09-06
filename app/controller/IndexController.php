@@ -18,30 +18,4 @@ class IndexController extends Controller
             'podaci' => [1,2,3,2,2,2,3]
         ]);
     }
-
-    public function smjerovi()
-    {
-
-        $smjerovi = Smjer::read();
-        foreach($smjerovi as $smjer){
-                $smjer->cijena = 
-                number_format(
-                    $smjer->cijena==null ? 0: $smjer->cijena,
-                    2,",",".") . " kn";   
-        }
-
-        $this->view->render('smjerovi',[
-            'smjerovi'=>$smjerovi
-        ]);
-    }
-
-    public function unesismjerove()
-    {
-        for($i=0;$i<100;$i++){
-            Smjer::create([
-                'naziv'=> 'Moja naziv ' . ($i+1),
-                'cijena'=>$i * 10
-            ]);
-        }
-    }
 }
