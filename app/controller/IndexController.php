@@ -21,9 +21,7 @@ class IndexController extends Controller
 
     public function login()
     {
-        $this->view->render('login',[
-            'poruka'=>'Unesite tražene podatke'
-        ]);
+        $this->loginView('','Unesite tražene podatke');
     }
 
     public function autorizacija()
@@ -31,16 +29,39 @@ class IndexController extends Controller
 
         if(!isset($_POST['email']) || !isset($_POST['lozinka'])){
             $this->login();
+            return; //short curcuiting
+        }
+
+        // ovdje znamo da su email i lozinka postavljeni
+        if(strlen(trim($_POST['email']))===0){
+            $this->loginView('','Email obavezno');
             return;
         }
 
-        if (strlen(trim($_POST['email']))===0){
-            $this->view->render('login',[
-                'poruka'=>'Unesite tražene podatke'
-            ]);
+        if(strlen(trim($_POST['lozinka']))===0){
+            $this->loginView($_POST['email'],'Lozinka obavezno');
             return;
         }
+
+        // svi podaci za provjeru u bazi su dobri
+        $operater = Operater::autoriziraj($_POST['email'],$_POST['lozinka']);
+        if($operater==null){
+            $this->loginView($_POST['email'],'Kombinacija email i lozinka netočna');
+            return;
+        }
+
+        //ovdje znam da je operater logiran
+        $_SESSION['autoriziran']=$operater;
+        echo 'Logiran si';
 
     }
 
+    private function loginView($email,$poruka)
+    {
+        $this->view->render('login',[
+            'email'=>$email,
+            'poruka'=>$poruka
+        ]);
+    }
+   
 }

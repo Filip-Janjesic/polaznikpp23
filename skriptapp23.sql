@@ -11,15 +11,16 @@ create table operater(
     lozinka char(60) not null,
     ime varchar(50) not null,
     prezime varchar(50) not null,
-    uloga varchar (10) not null
+    uloga varchar(10) not null
 );
 
 # lozinka je a
-insert into operater(email,lozinka,ime,prezime,uloga) values
-('admin@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
+insert into operater(email,lozinka,ime,prezime,uloga) values 
+('admin@edunova.hr','$2y$10$sc61AG4pNc2ddh4SVRYr1.VVaH58j8LRf03QkUwrC1AKN95acN.qu',
 'Administrator','Edunova','admin'),
-('oper@edunova.hr','$2y$10$9Q49.BVyKoJVfyiMCemca.i9zK8RNfmptwlbbEBSOMZAAD1/9O/SO',
-'operater','Edunova','oper');
+('oper@edunova.hr','$2y$10$sc61AG4pNc2ddh4SVRYr1.VVaH58j8LRf03QkUwrC1AKN95acN.qu',
+'Operater','Edunova','oper');
+
 
 # NULL je nepoznavanje vrijednost
 create table smjer(
