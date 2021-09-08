@@ -18,4 +18,15 @@ class Request
     {
         return isset($_SESSION['autoriziran']);
     }
+
+    public static function user()
+    {
+        return $_SESSION['autoriziran']->ime . ' ' 
+                . $_SESSION['autoriziran']->prezime;
+    }
+
+    public static function isAdmin()
+    {
+        return $_SESSION['autoriziran']->uloga==='admin';
+    }
 }
