@@ -22,8 +22,8 @@ class IndexController extends Controller
     public function login()
     {
         if(Request::isAutoriziran()){
-            &np = new NadzornaplocaController();
-            $no->index();
+            $np = new NadzornaplocaController();
+            $np->index();
             return;
         }
         $this->loginView('','Unesite tražene podatke');
