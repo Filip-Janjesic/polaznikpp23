@@ -24,6 +24,13 @@ class IndexController extends Controller
         $this->loginView('','Unesite tražene podatke');
     }
 
+    public function logout()
+    {
+        unset($_SESSION['autoriziran']);
+        session_destroy();
+        $this->index();
+    }
+
     public function autorizacija()
     {
 
@@ -52,7 +59,8 @@ class IndexController extends Controller
 
         //ovdje znam da je operater logiran
         $_SESSION['autoriziran']=$operater;
-        echo 'Logiran si';
+        $np = new NadzornaplocaController();
+        $np->index();
 
     }
 

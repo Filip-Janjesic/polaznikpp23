@@ -13,4 +13,9 @@ class Request
         // dodati bilo što gdje može biti taj podataka
         return $ruta;
     }
+
+    public static function isAutoriziran()
+    {
+        return isset($_SESSION['autoriziran']);
+    }
 }

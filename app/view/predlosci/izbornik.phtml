@@ -3,12 +3,21 @@
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text"><?=App::config('nazivApp')?></li>
       <li><a href="<?=App::config('url')?>">Početna</a></li>
+      <?php if(Request::isAutoriziran()): ?>
+        <a href="<?=App::config('url')?>nadzornaploca/index">Nadzorna ploča</a>
+      <?php endif; ?>
       <li><a href="<?=App::config('url')?>index/onama">O nama</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><a href="<?=App::config('url')?>index/login">Login</a></li>
+      <li>
+      <?php if(!Request::isAutoriziran()): ?>
+        <a href="<?=App::config('url')?>index/login">Login</a>
+      <?php else:?>
+        <a href="<?=App::config('url')?>index/logout">Odjava</a>
+      <?php endif; ?>
+      </li>
     </ul>
   </div>
 </div>
