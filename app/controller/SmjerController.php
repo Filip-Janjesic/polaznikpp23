@@ -12,4 +12,19 @@ class SmjerController extends AutorizacijaController
             'smjerovi'=>Smjer::read()
         ]);
     }
+
+    public function novi()
+    {
+        $this->view->render($this->viewDir . 'novi');
+    }
+
+    public function promjena()
+    {
+        $this->view->render($this->viewDir . 'promjena');
+    }
+
+    public function brisanje()
+    {
+       
+    }
 }
