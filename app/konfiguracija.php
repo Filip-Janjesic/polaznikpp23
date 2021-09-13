@@ -27,6 +27,5 @@ return [
     'dev' => $dev,
     'nazivApp'=>'Edunova APP',
     'url'=> $url,
-
     'baza'=> $baza
 ];
