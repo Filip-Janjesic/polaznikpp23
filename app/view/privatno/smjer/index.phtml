@@ -1,1 +1,21 @@
-Ovdje dođu smjerovi
+<h1 style="font-size: 1rem;">Smjerovi</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Trajanje</th>
+            <th>Cijena</th>
+            <th>Certifikat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($smjerovi as $smjer): ?>
+            <tr>
+                <td><?=$smjer->naziv?></td>
+                <td><?=$smjer->trajanje?></td>
+                <td><?=$smjer->cijena?></td>
+                <td><?=$smjer->certifikat?></td>
+            </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

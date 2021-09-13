@@ -1,7 +1,7 @@
 drop database if exists edunovapp23;
 
 create database 
-    edunovapp23;
+    edunovapp23 default character set utf8mb4;
 
 use edunovapp23;
 
