@@ -1,1 +1,44 @@
-ovdje dođe forma za novi smjer
+<form class="log-in-form" method="POST" 
+action="<?=App::config('url')?>smjer/dodajnovi">
+
+  <label>Naziv
+    <input type="text" name="naziv"
+    value="<?=$smjer->naziv?>">
+  </label>
+
+  <label>Trajanje
+    <input type="text" name="trajanje"
+    value="<?=$smjer->trajanje?>">
+  </label>
+
+  <label>Cijena
+    <input type="text" name="cijena"
+    value="<?=$smjer->cijena?>">
+  </label>
+
+  <div class="grid-x grid-padding-x">
+    <fieldset class="large-12 cell">
+        <legend>Certifikat</legend>
+        <input type="radio" 
+        <?php echo $smjer->certifikat ? 'checked="checked"' : ''; ?>
+        name="certifikat" value="1" id="da"><label for="da">Certificiran</label>
+        <input type="radio" 
+        <?php echo !$smjer->certifikat ? 'checked="checked"' : ''; ?>
+        name="certifikat" value="0" id="ne"><label for="ne">Ne certificiran</label>
+    </fieldset>
+  </div>
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a href="<?=App::config('url')?>smjer/index" 
+        class="alert button expanded">Nazad</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" 
+        value="Unesi smjer"></input>
+    </div>
+  </div>
+  
+    <?=$poruka?>
+</form>
