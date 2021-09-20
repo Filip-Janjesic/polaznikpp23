@@ -136,11 +136,52 @@ class SmjerController extends AutorizacijaController
 
     public function promjena()
     {
-        $this->view->render($this->viewDir . 'promjena');
+        $this->smjer = Smjer::readOne($_GET['sifra']);
+        if($this->smjer==null){
+            $this->index();
+        }else{
+            $this->view->render($this->viewDir . 'promjena',[
+                'smjer'=>$this->smjer,
+                'poruka'=>'Promjenite željene podatke'
+            ]);
+        }
+      
+    }
+
+    public function promjeni()
+    {
+        if(!$_POST){
+            $this->index();
+            return;
+         }
+ 
+         $this->smjer = (object)$_POST;
+ 
+ 
+         if(
+             
+             $this->kontrolaNaziv() 
+         && $this->kontrolaTrajanje()
+         && $this->kontrolaCijena()
+         && $this->kontrolaCertifikat()
+         
+         ){
+             //ide spremanje u bazu
+             $this->smjer->cijena = str_replace(array('.', ','), array('', '.'), 
+             $this->smjer->cijena);
+             Smjer::update((array)($this->smjer));
+             $this->index();
+         }else{
+             $this->view->render($this->viewDir . 'promjena',[
+                 'smjer'=>$this->smjer,
+                 'poruka'=>$this->poruka
+             ]); 
+         }
     }
 
     public function brisanje()
     {
-       
+       Smjer::delete($_GET['sifra']);
+       $this->index();
     }
 }
