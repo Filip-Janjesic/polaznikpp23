@@ -76,5 +76,5 @@ class IndexController extends Controller
             'poruka'=>$poruka
         ]);
     }
-   
+
 }

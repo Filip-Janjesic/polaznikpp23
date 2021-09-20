@@ -20,8 +20,15 @@ class SmjerController extends AutorizacijaController
 
     public function index()
     {
+        $smjerovi = Smjer::read();
+        $nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
+        $nf->setPattern("#,##0.00 kn");
+        foreach($smjerovi as $smjer){
+            $smjer->cijena = $nf->format($smjer->cijena);
+        }
+       
         $this->view->render($this->viewDir . 'index',[
-            'smjerovi'=>Smjer::read()
+            'smjerovi'=>$smjerovi
         ]);
     }
 
