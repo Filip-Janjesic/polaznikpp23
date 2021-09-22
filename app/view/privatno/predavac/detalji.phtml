@@ -1,0 +1,28 @@
+<form class="log-in-form" method="POST"
+action="<?php echo $_SERVER['REQUEST_URI'];?>">
+
+  <?php 
+  EdunovaUtil::inputTextArray((array)$predavac);
+  /*
+  EdunovaUtil::inputText('ime', $predavac->ime);
+  EdunovaUtil::inputText('prezime', $predavac->prezime);
+  EdunovaUtil::inputText('oib', $predavac->oib);
+  EdunovaUtil::inputText('email', $predavac->email);
+  EdunovaUtil::inputText('iban', $predavac->iban);
+  */
+  ?>
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a href="<?=App::config('url')?>predavac/index" 
+        class="alert button expanded">Nazad</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" 
+        value="<?=$akcija?>"></input>
+    </div>
+  </div>
+  
+    <?=$poruka?>
+</form>

@@ -1,4 +1,51 @@
-Tu dođe popis predavača
-<pre>
-    <?php print_r($predavaci); ?>
-</pre>
+<a href="<?=App::config('url')?>predavac/detalji" 
+class="success button expanded">Novi predavač</a>
+<div class="grid-x grid-padding-x">
+    <?php foreach($predavaci as $predavac):?>
+
+        <div class="large-3 medium-6 cell">
+            <div class="callout" style="text-align: center;">
+                <img src="<?=App::config('url')?>public/img/nepoznato.png" 
+                alt="<?=$predavac->ime?> <?=$predavac->prezime?>">
+                <h1 class="naslovPredavac">
+                    <?=$predavac->ime?> <?=$predavac->prezime?>
+                </h1>
+                <div class="success callout">
+                    <a href="<?=App::config('url')?>predavac/detalji/<?=$predavac->sifra?>">
+                            <i title="Promjena" class="fas fa-2x fa-pencil-alt"></i>
+                        </a>
+                        <?php if($predavac->grupa==0): ?>
+                        <a 
+                        onclick="return confirm('Sigurno obrisati predavača &#34;<?=$predavac->ime?> <?=$predavac->prezime?>&#34;?');"
+                        href="<?=App::config('url')?>predavac/brisanje?sifra=<?=$predavac->sifra?>">
+                            <i title="Brisanje" style="color: red; margin-left: 20px;" class="fas fa-2x fa-trash-alt"></i>
+                        </a>
+                        <?php else:?>
+                            <i title="Ne može se obrisati jer predaje na grupama(<?=$predavac->grupa?>)" style="color: gray; margin-left: 20px;" class="fas fa-2x fa-trash-alt"></i>
+                        <?php endif;?>
+                </div>
+                
+            </div>
+            
+        </div>
+
+    <?php endforeach;?>
+    <div class="large-3 medium-6 cell">
+            <div class="callout" style="text-align: center;">
+                <img src="<?=App::config('url')?>public/img/nepoznatoNovo.png" 
+                alt="">
+                <h1 class="naslovPredavac">
+                <a href="<?=App::config('url')?>predavac/detalji" class="">Novi predavač</a>
+
+                </h1>
+                <div class="success callout">
+                     <i style="color: gray; margin-left: 20px;" class="fas fa-2x fa-pencil-alt"></i>
+                       
+                            <i  style="color: gray; margin-left: 20px;" class="fas fa-2x fa-trash-alt"></i>
+                      
+                </div>
+                
+            </div>
+            
+        </div>
+</div>

@@ -27,10 +27,21 @@ class App
         }else{
             $metoda = $djelovi[2];
         }
-        //echo $klasa . '->' . $metoda;
+        $sifra = 0; 
+        if(!isset($djelovi[3]) || $djelovi[3]==''){
+            $sifra=0;
+        }else{
+            $sifra = $djelovi[3];
+        }
+        //echo $klasa . '->' . $metoda . '(' . $sifra . ')';
         if(class_exists($klasa) && method_exists($klasa,$metoda)){
             $instanca = new $klasa();
-            $instanca->$metoda();
+            if($sifra==0){
+                $instanca->$metoda();
+            }else{
+                $instanca->$metoda($sifra);
+            }
+            
         }else{
             //error page
             echo 'Čak niti HGSS ne može naći što tražite ' . 

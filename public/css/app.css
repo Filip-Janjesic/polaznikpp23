@@ -1,3 +1,9 @@
 #program{
     min-height: 400px;
 }
+
+.naslovPredavac{
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+}

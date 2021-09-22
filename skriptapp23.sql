@@ -130,3 +130,13 @@ insert into clan values
 ,(1,16),(1,17);
 
 
+# dodatni predavači
+insert into osoba(ime,prezime,email) values
+('Predavač','Jedan','dankosimic@gmail.com'),
+('Predavač','Dva','franko.vekic@gmail.com'),
+('Predavač','Tri','ahofsuster@gmail.com'),
+('Predavač','Četiri','prsa.matija@gmail.com'),
+('Predavač','Pet','darko.luketic81@gmail.com');
+
+insert into predavac (osoba) values (20),(21)
+,(22),(23),(24);
