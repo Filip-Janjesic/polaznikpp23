@@ -17,7 +17,7 @@ class="success button expanded">Novi predavač</a>
                         <?php if($predavac->grupa==0): ?>
                         <a 
                         onclick="return confirm('Sigurno obrisati predavača &#34;<?=$predavac->ime?> <?=$predavac->prezime?>&#34;?');"
-                        href="<?=App::config('url')?>predavac/brisanje?sifra=<?=$predavac->sifra?>">
+                        href="<?=App::config('url')?>predavac/brisanje/<?=$predavac->sifra?>">
                             <i title="Brisanje" style="color: red; margin-left: 20px;" class="fas fa-2x fa-trash-alt"></i>
                         </a>
                         <?php else:?>

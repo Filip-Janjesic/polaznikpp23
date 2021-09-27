@@ -44,9 +44,18 @@ class PredavacController extends AutorizacijaController
             if($sifra==0){
                 Predavac::create($_POST);
             }else{
-                Predavac::update($_POST);
+                Predavac::update($sifra,$_POST);
             }
             $this->index();
         }
+    }
+
+    public function brisanje($sifra = 0){
+        if($sifra==0){
+            $this->index();
+            return;
+        }
+        Predavac::delete($sifra);
+        $this->index();
     }
 }
