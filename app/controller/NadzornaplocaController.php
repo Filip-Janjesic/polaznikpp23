@@ -5,6 +5,8 @@ class NadzornaplocaController extends AutorizacijaController
     public function index()
     {
         $this->view->render('privatno' . 
-        DIRECTORY_SEPARATOR . 'nadzornaploca');
+        DIRECTORY_SEPARATOR . 'nadzornaploca',[
+            'podaci' => Grupa::brojClanovaPoGrupi()
+        ]);
     }
 }

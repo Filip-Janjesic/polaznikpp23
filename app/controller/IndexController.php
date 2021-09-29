@@ -77,4 +77,18 @@ class IndexController extends Controller
         ]);
     }
 
+    public function test()
+    {
+        for($i=0;$i<1000;$i++){
+            Polaznik::create([
+                'ime'=>'Ime ' . $i,
+                'prezime'=>'Prezime ' . $i,
+                'email'=>'ime@prezime.com',
+                'oib'=>'11111111111',
+                'brojugovora'=>'2021/' . $i
+            ]);
+        }
+
+    }
+
 }

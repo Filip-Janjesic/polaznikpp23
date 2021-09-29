@@ -1,0 +1,28 @@
+<form class="log-in-form" method="POST"
+action="<?php echo $_SERVER['REQUEST_URI'];?>">
+
+  <?php 
+  EdunovaUtil::inputTextArray((array)$polaznik);
+  /*
+  EdunovaUtil::inputText('ime', $polaznik->ime);
+  EdunovaUtil::inputText('prezime', $polaznik->prezime);
+  EdunovaUtil::inputText('oib', $polaznik->oib);
+  EdunovaUtil::inputText('email', $polaznik->email);
+  EdunovaUtil::inputText('iban', $polaznik->iban);
+  */
+  ?>
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a href="<?=App::config('url')?>polaznik/index" 
+        class="alert button expanded">Nazad</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" 
+        value="<?=$akcija?>"></input>
+    </div>
+  </div>
+  
+    <?=$poruka?>
+</form>

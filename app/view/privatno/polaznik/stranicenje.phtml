@@ -1,0 +1,16 @@
+<div style="width: 100%; text-align: center;">
+<nav aria-label="Pagination">
+  <ul class="pagination">
+    <li class="pagination-previous">
+        <a href="<?=App::config('url')?>polaznik/index?stranica=<?php echo $stranica-1 ?>">
+     Prethodno <span class="show-for-sr">page</span></a></li>
+    <li class="current">
+        <span class="show-for-sr">
+        You're on page
+        </span> <?=$stranica?></li>
+    <li class="pagination-next">
+        <a href="<?=App::config('url')?>polaznik/index?stranica=<?php echo $stranica+1 ?>" aria-label="Next page">
+            Next <span class="show-for-sr">page</span></a></li>
+  </ul>
+</nav>
+</div>

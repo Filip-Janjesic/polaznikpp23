@@ -10,12 +10,12 @@ class View
         $this->predlozak = $predlozak;
     }
 
-    public function render($stranica,$parametri=[])
+    public function render($phtmlStranica,$parametri=[])
     {
         ob_start();
         extract($parametri);
         include BP_APP  . 'view' . DIRECTORY_SEPARATOR . 
-        $stranica . '.phtml';
+        $phtmlStranica . '.phtml';
         $sadrzaj = ob_get_clean();
         include BP_APP  . 'view' . DIRECTORY_SEPARATOR . 
         $this->predlozak . '.phtml';
