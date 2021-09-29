@@ -19,7 +19,14 @@ class PolaznikController extends AutorizacijaController
             $stranica=1;
         }
 
-        $ukupnoPolaznika = Polaznik::ukupnoPolaznika();
+        if(!isset($_GET['uvjet'])){
+            $uvjet='';
+        }else{
+            $uvjet= $_GET['uvjet'];
+        }
+      
+
+        $ukupnoPolaznika = Polaznik::ukupnoPolaznika($uvjet);
         $ukupnoStranica = ceil($ukupnoPolaznika/App::config('rezultataPoStranici'));
 
         if($stranica>$ukupnoStranica){
@@ -27,8 +34,9 @@ class PolaznikController extends AutorizacijaController
         }
 
         $this->view->render($this->viewDir . 'index',[
-            'polaznici'=>Polaznik::read($stranica),
-            'stranica' => $stranica
+            'polaznici'=>Polaznik::read($stranica,$uvjet),
+            'stranica' => $stranica,
+            'uvjet' => $uvjet
         ]);
     }
 

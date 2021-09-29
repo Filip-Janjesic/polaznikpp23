@@ -1,5 +1,10 @@
 <a href="<?=App::config('url')?>polaznik/detalji" 
 class="success button expanded">Novi polaznik</a>
+<form method="GET" 
+action="<?=App::config('url')?>polaznik/index">
+    <input type="text" name="uvjet" placeholder="ime, prezime ili OIB"
+    value="<?=$uvjet?>">
+</form>
 <?php include 'stranicenje.phtml' ?>
 <div class="grid-x grid-padding-x">
     <?php foreach($polaznici as $polaznik):?>

@@ -3,21 +3,27 @@
 class Polaznik
 {
 
-    public static function ukupnoPolaznika()
+    public static function ukupnoPolaznika($uvjet)
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
 
-                    select count(sifra) from polaznik;
+                    select count(a.sifra) from polaznik a
+                    inner join osoba b on a.osoba=b.sifra
+                    where  concat(b.ime, \' \', 
+                    b.prezime, \' \', ifnull(b.oib,\'\')) like :uvjet
 
         ');
+        $uvjet = '%' . $uvjet . '%';
+        $izraz->bindParam('uvjet', $uvjet);
         $izraz->execute();
 
         return $izraz->fetchColumn();
     }
 
-    public static function read($stranica)
+    public static function read($stranica,$uvjet)
     {
+        
         $rps = App::config('rezultataPoStranici');
         $od = $stranica * $rps - $rps;
 
@@ -31,16 +37,18 @@ class Polaznik
             on a.osoba = b.sifra
             left join clan c
             on a.sifra =c.polaznik 
+            where concat(b.ime, \' \', 
+            b.prezime, \' \', ifnull(b.oib,\'\')) like :uvjet
             group by a.sifra, b.ime, b.prezime, b.oib, 
             b.email, a.brojugovora
             limit :od,:rps;
         
         
         ');
-
+        $uvjet = '%' . $uvjet . '%';
         $izraz->bindValue('od', $od, PDO::PARAM_INT);
         $izraz->bindValue('rps', $rps, PDO::PARAM_INT);
-
+        $izraz->bindParam('uvjet', $uvjet);
         $izraz->execute();
 
         return $izraz->fetchAll();

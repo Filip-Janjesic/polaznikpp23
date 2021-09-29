@@ -13,9 +13,25 @@ class IndexController extends Controller
         //dovuče podatke s REST API
         //PRILAGODI PODATKE ako treba
         //proslijedi podatke na view
+
+        //https://www.php.net/manual/en/curl.examples.php
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, 'https://api.hnb.hr/tecajn/v2');
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        // close curl resource to free up system resources
+        curl_close($ch);     
+
         $this->view->render('onama',[
-            'ime'=>'Pero',
-            'podaci' => [1,2,3,2,2,2,3]
+            'lista'=>json_decode($output)
         ]);
     }
 

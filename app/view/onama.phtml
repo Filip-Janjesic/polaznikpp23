@@ -1,7 +1,12 @@
-<?=$ime?> je super
-<hr />
-<?php foreach($podaci as $p):?>
-<div class="callout">
-    <?=$p?>
-</div>
-<?php endforeach ?>
+<ul>
+<?php foreach($lista as $v): ?>
+
+    <li><?=$v->valuta ?> <?=$v->srednji_tecaj ?></li>
+
+<?php endforeach; ?>
+</ul>
+
+
+<pre>
+<?php //print_r($lista); ?>
+</pre>
