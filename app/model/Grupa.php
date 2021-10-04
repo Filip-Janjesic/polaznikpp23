@@ -13,7 +13,7 @@ class Grupa
                 count(b.polaznik) as clanova 
                 from grupa a left join clan b
                 on a.sifra = b.grupa 
-                inner join smjer c on a.smjer = c.sifra
+                left join smjer c on a.smjer = c.sifra
                 left join predavac d on a.predavac = d.sifra
                 left join osoba e on d.osoba = e.sifra
                 group by a.sifra, a.naziv, a.smjer, 
@@ -26,19 +26,87 @@ class Grupa
         return $izraz->fetchAll();
     }
 
-    public static function create()
+    public static function readOne($sifra)
     {
+        $veza = DB::getInstanca();
+        
+        $izraz = $veza->prepare('
+        
+            select * from grupa where sifra=:sifra
+        
+        ');
+
+        $izraz->execute(['sifra'=>$sifra]);
+
+        $grupa = $izraz->fetch();
+
+        $izraz = $veza->prepare('
+        
+                select b.sifra, c.ime, c.prezime
+                from
+                clan a inner join polaznik b 
+                on a.polaznik=b.sifra 
+                inner join osoba c
+                on b.osoba =c.sifra 
+                where a.grupa=:sifra;
+        
+        ');
+
+        $izraz->execute(['sifra'=>$sifra]);
+        $grupa->polaznici = $izraz->fetchAll();
+        return $grupa;
+    }
+
+    public static function dodajNovu()
+    {
+
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+
+            insert into grupa(naziv) values (\'\');
+
+        ');
+        $izraz->execute();
+
+        return $veza->lastInsertId();
         
     }
 
-    public static function update()
+    public static function update($sifra,$parametri)
     {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+            update grupa set 
+                naziv=:naziv,
+                smjer=:smjer,
+                predavac=:predavac,
+                datumpocetka=:datumpocetka
+            where sifra=:sifra
+
+        ');
+
+        $izraz->execute([
+            'naziv'=>$parametri['naziv'],
+            'smjer'=>$parametri['smjer'],
+            'predavac'=>$parametri['predavac'],
+            'datumpocetka'=>$parametri['datumpocetka'],
+            'sifra'=>$sifra,
+        ]);
         
     }
 
-    public static function delete()
+    public static function delete($sifra)
     {
+        $veza = DB::getInstanca();
+
+        $izraz = $veza->prepare('
         
+            delete from grupa where sifra=:sifra
+
+        ');
+
+        $izraz->execute(['sifra'=>$sifra]);
     }
 
     public static function brojClanovaPoGrupi()

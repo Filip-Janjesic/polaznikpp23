@@ -1,0 +1,84 @@
+<form class="log-in-form" method="POST"
+action="<?php echo $_SERVER['REQUEST_URI'];?>">
+
+<div class="grid-x grid-padding-x">
+  <div class="large-6 medium-6 cell">
+    <label>Naziv
+      <input type="text" name="naziv"
+      value="<?=$grupa->naziv?>">
+    </label>
+
+    <label> Smjer
+      <select name="smjer">
+        <option value="0">Odaberite smjer</option>
+        <?php foreach($smjerovi as $smjer): ?>
+        <option 
+        <?php if($grupa->smjer==$smjer->sifra){
+          echo 'selected="selected"';
+        } ?>
+        value="<?=$smjer->sifra?>"><?=$smjer->naziv?></option>
+        <?php endforeach; ?>
+      </select>
+    </label>
+
+    <label> Predavač
+      <select name="predavac">
+        <option value="0">Odaberite predavača</option>
+        <?php foreach($predavaci as $predavac): ?>
+        <option 
+        <?php if($grupa->predavac==$predavac->sifra){
+          echo 'selected="selected"';
+        } ?>
+        value="<?=$predavac->sifra?>"><?=$predavac->ime?> <?=$predavac->prezime?></option>
+        <?php endforeach; ?>
+      </select>
+    </label>
+
+    <label>Datum početka
+      <input type="date" name="datumpocetka"
+      value="<?=$grupa->datumpocetka==null ? '' : date('Y-m-d',strtotime($grupa->datumpocetka))?>">
+    </label>
+  </div>
+  <div class="large-6 medium-6 cell">
+          Polaznici
+          <input type="text" id="uvjet" />
+
+          <div class="callout" style="overflow: auto; max-height: 250px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Polaznik</th>
+                  <th>Akcija</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($grupa->polaznici as $polaznik): ?>
+                    <tr>
+                      <td>
+                        <?=$polaznik->ime?> <?=$polaznik->prezime?>
+                      </td>
+                      <td>
+                        napraviti <?=$polaznik->sifra?>
+                      </td>
+                    </tr>
+                <?php endforeach;?>
+              </tbody>
+            </table>
+          </div>
+  </div>
+</div>
+  
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a href="<?=App::config('url')?>grupa/index" 
+        class="alert button expanded">Nazad</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" 
+        value="Spremi"></input>
+    </div>
+  </div>
+  
+    <?=$poruka?>
+</form>

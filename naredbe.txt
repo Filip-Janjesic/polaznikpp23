@@ -1,0 +1,1 @@
+c:\xampp\mysql\bin\mysql.exe -uedunova -pedunova --default_character_set=utf8 < E:\pp23\EDUNOVAPP23\skriptapp23.sql

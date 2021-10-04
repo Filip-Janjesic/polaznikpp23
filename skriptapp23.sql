@@ -34,7 +34,7 @@ create table smjer(
 create table grupa(
     sifra int not null primary key auto_increment,
     naziv varchar(50) not null,
-    smjer int not null,
+    smjer int,
     predavac int,
     datumpocetka datetime
 );
@@ -117,8 +117,8 @@ insert into polaznik (osoba) values
 
 
 #1
-insert into grupa (smjer,naziv) values
-(1,'PP23');
+insert into grupa (predavac,naziv,smjer,datumpocetka) values
+(1,'PP23',1,'2021-04-30');
 
 #2
 insert into grupa (predavac,naziv,smjer) values

@@ -17,10 +17,10 @@ class="success button expanded">Nova grupa</a>
                 <td><?=$grupa->smjer?></td>
                 <td><?=$grupa->predavac?></td>
                 <td>
-                    <?=$grupa->datumpocetka?>
+                    <?=$grupa->datumpocetka==null ? '' : date('d. m. Y.', strtotime($grupa->datumpocetka))?>
                 </td>
                 <td>
-                    <a href="<?=App::config('url')?>grupa/promjena?sifra=<?=$grupa->sifra?>">
+                    <a href="<?=App::config('url')?>grupa/detalji/<?=$grupa->sifra?>">
                         <i title="Promjena" class="fas fa-2x fa-pencil-alt"></i>
                     </a>
                     <?php if($grupa->clanova==0): ?>
