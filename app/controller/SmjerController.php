@@ -20,6 +20,13 @@ class SmjerController extends AutorizacijaController
 
     public function index()
     {
+
+        // Apstrakna klasa je ona klasa koja ne može imati instancu
+        // Kreira se s cilje da ju druge klase nasljede a ona da ima
+        // neka zajednička svojstva svim podklasama
+        //$c = new Controller();
+
+
         $smjerovi = Smjer::read();
         $nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
         $nf->setPattern("#,##0.00 kn");
@@ -30,6 +37,8 @@ class SmjerController extends AutorizacijaController
         $this->view->render($this->viewDir . 'index',[
             'smjerovi'=>$smjerovi
         ]);
+
+        
     }
 
     public function novi()

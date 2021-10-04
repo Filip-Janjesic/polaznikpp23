@@ -1,6 +1,6 @@
 <?php
 
-class AutorizacijaController extends Controller
+abstract class AutorizacijaController extends Controller
 {
     public function __construct()
     {
