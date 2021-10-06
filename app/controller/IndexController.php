@@ -107,4 +107,9 @@ class IndexController extends Controller
 
     }
 
+    public function ajax()
+    {
+        echo json_encode(Smjer::read());
+    }
+
 }
