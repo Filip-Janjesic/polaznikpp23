@@ -23,9 +23,11 @@
     <tbody>
         <?php foreach($smjerovi as $smjer): ?>
             <tr>
-                <td><?=$smjer->naziv?></td>
+                <td><p id="p_<?=$smjer->sifra?>" class="nazivi">
+                <?=$smjer->slika?>
+                <?=$smjer->naziv?></p></td>
                 <td><?=$smjer->trajanje?></td>
-                <td style="text-align: right;"><?=$smjer->cijena?></td>
+                <td style="text-align: right;"><?=$smjer->cijena?> kn</td>
                 <td>
                     <?php if($smjer->certifikat): ?>
                         <i title="Certificiran" style="color: green;" class="fas fa-2x fa-certificate"></i>

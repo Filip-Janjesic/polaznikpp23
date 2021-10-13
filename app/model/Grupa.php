@@ -126,4 +126,26 @@ class Grupa
         return $izraz->fetchAll();
     }
 
+    public static function dodajPolaznika($polaznik,$grupa){
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+
+            insert into clan(grupa,polaznik) values (:grupa,:polaznik);
+
+        ');
+        $izraz->execute(['grupa'=>$grupa, 'polaznik'=>$polaznik]);
+
+    }
+
+    public static function obrisiPolaznika($polaznik,$grupa){
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+
+            delete from clan where grupa=:grupa and polaznik=:polaznik;
+
+        ');
+        $izraz->execute(['grupa'=>$grupa, 'polaznik'=>$polaznik]);
+
+    }
+
 }

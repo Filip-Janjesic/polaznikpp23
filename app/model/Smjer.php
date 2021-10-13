@@ -82,4 +82,18 @@ class Smjer
  
          $izraz->execute(['sifra'=>$sifra]);
      }
+
+     public static function grupe($sifra)
+     {
+         $veza = DB::getInstanca();
+         $izraz = $veza->prepare('
+         
+             select naziv from grupa where smjer=:sifra
+         
+         ');
+ 
+         $izraz->execute(['sifra'=>$sifra]);
+ 
+         return $izraz->fetchAll();
+     }
 }

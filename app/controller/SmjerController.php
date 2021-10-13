@@ -5,8 +5,12 @@ class SmjerController extends AutorizacijaController
 
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 
                         'smjer' . DIRECTORY_SEPARATOR;
+    private $slikaDir = BP . DIRECTORY_SEPARATOR . 
+    'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR .
+    'smjer' . DIRECTORY_SEPARATOR;
     private $smjer;
     private $poruka;
+    private $nf;
 
     public function __construct()
     {
@@ -16,6 +20,8 @@ class SmjerController extends AutorizacijaController
         $this->smjer->cijena='0,00';
         $this->smjer->trajanje='100';
         $this->smjer->certifikat=true;
+        $this->nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
+        $this->nf->setPattern("#,##0.00");
     }
 
     public function index()
@@ -28,14 +34,20 @@ class SmjerController extends AutorizacijaController
 
 
         $smjerovi = Smjer::read();
-        $nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
-        $nf->setPattern("#,##0.00 kn");
+        
         foreach($smjerovi as $smjer){
-            $smjer->cijena = $nf->format($smjer->cijena);
+            $smjer->cijena = $this->nf->format($smjer->cijena);
+
+            if(file_exists($this->slikaDir . $smjer->sifra . '.jpg')){
+                    $smjer->slika = '<img src="' . App::config('url') . 'public/img/smjer/' . $smjer->sifra . '.jpg" alt="' . $smjer->naziv . '" />';
+                }else{
+                    $smjer->slika='';
+                }
         }
        
         $this->view->render($this->viewDir . 'index',[
-            'smjerovi'=>$smjerovi
+            'smjerovi'=>$smjerovi,
+            'dodatniJS'=>'<script src="' . App::config('url') . 'public/js/smjerDetaljiGrupe.js"></script>'
         ]);
 
         
@@ -156,6 +168,7 @@ class SmjerController extends AutorizacijaController
         if($this->smjer==null){
             $this->index();
         }else{
+            $this->smjer->cijena = $this->nf->format($this->smjer->cijena);
             $this->view->render($this->viewDir . 'promjena',[
                 'smjer'=>$this->smjer,
                 'poruka'=>'Promjenite željene podatke'
@@ -186,6 +199,10 @@ class SmjerController extends AutorizacijaController
              $this->smjer->cijena = str_replace(array('.', ','), array('', '.'), 
              $this->smjer->cijena);
              Smjer::update((array)($this->smjer));
+             if(isset($_FILES['slika'])){
+                move_uploaded_file($_FILES['slika']['tmp_name'],
+                $this->slikaDir . $this->smjer->sifra . '.jpg');
+             }
              $this->index();
          }else{
              $this->view->render($this->viewDir . 'promjena',[
@@ -198,6 +215,18 @@ class SmjerController extends AutorizacijaController
     public function brisanje()
     {
        Smjer::delete($_GET['sifra']);
+       if(file_exists($this->slikaDir .$_GET['sifra'] . '.jpg')){
+          unlink($this->slikaDir .$_GET['sifra'] . '.jpg');
+       }
        $this->index();
+    }
+
+    public function grupe()
+    {
+    $grupe = [];
+       foreach(Smjer::grupe($_POST['smjer']) as $g){
+           $grupe[]=$g->naziv;
+       }
+       echo join(', ', $grupe);
     }
 }

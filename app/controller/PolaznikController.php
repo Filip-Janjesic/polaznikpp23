@@ -83,4 +83,10 @@ class PolaznikController extends AutorizacijaController
         Polaznik::delete($sifra);
         $this->index();
     }
+
+    public function trazipolaznike()
+    {
+        header('Content-type: application/json');
+        echo json_encode(Polaznik::trazipolaznike($_GET['uvjet'],$_GET['grupa']));
+    }
 }

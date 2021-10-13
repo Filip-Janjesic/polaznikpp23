@@ -1,5 +1,6 @@
 <form class="log-in-form" method="POST" 
-action="<?=App::config('url')?>smjer/promjeni">
+action="<?=App::config('url')?>smjer/promjeni"
+enctype="multipart/form-data">
 
   <label>Naziv
     <input type="text" name="naziv"
@@ -14,6 +15,10 @@ action="<?=App::config('url')?>smjer/promjeni">
   <label>Cijena
     <input type="text" name="cijena"
     value="<?=$smjer->cijena?>">
+  </label>
+
+  <label>Slika
+    <input type="file" name="slika" />
   </label>
 
   <div class="grid-x grid-padding-x">

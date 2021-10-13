@@ -26,4 +26,12 @@ class EdunovaUtil
        </label>';
        }
     }
+
+
+    public static function verzija() {
+        exec('git describe --always',$version_mini_hash);
+        exec('git rev-list HEAD | wc -l',$version_number);
+        exec('git log -1',$line);
+        return $version_mini_hash[0];
+      }
 }

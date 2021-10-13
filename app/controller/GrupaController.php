@@ -27,7 +27,10 @@ class GrupaController extends AutorizacijaController
                 'grupa'=>Grupa::readOne($sifra),
                 'poruka'=>'',
                 'smjerovi'=>Smjer::read(),
-                'predavaci'=>Predavac::read()
+                'predavaci'=>Predavac::read(),
+                'dodatniCSS'=>'<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">',
+                'dodatniJS'=>'<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+                <script src="' . App::config('url') . 'public/js/grupaautocompletepolaznik.js"></script>'
             ]);
             return;
         }
@@ -44,5 +47,16 @@ class GrupaController extends AutorizacijaController
        $this->index();
     }
 
+    public function dodajpolaznika()
+    {
+        Grupa::dodajPolaznika($_POST['polaznik'],$_POST['grupa']);
+        echo 'OK';
+    }
+
+    public function obrisipolaznika()
+    {
+        Grupa::obrisiPolaznika($_POST['polaznik'],$_POST['grupa']);
+        echo 'OK';
+    }
 
 }

@@ -3,6 +3,9 @@ drop database if exists edunovapp23;
 create database 
     edunovapp23 default character set utf8mb4;
 
+# phpmyadmin na cpanelu-u
+alter database cesar_pp23 default character set utf8mb4;
+
 use edunovapp23;
 
 create table operater(

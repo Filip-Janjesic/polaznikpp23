@@ -44,8 +44,12 @@ class App
             
         }else{
             //error page
-            echo 'Čak niti HGSS ne može naći što tražite ' . 
-                $klasa . '->' . $metoda;
+            //echo 'Čak niti HGSS ne može naći što tražite ' . 
+            //    $klasa . '->' . $metoda;
+            $view = new View();
+            $view->render('error404',[
+                'onoceganema'=>$klasa . '->' . $metoda
+            ]);
         }
     }
 

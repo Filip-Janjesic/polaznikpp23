@@ -6,10 +6,9 @@ action="<?=App::config('url')?>smjer/dodajnovi">
     value="<?=$smjer->naziv?>">
   </label>
 
-  <label>Trajanje
-    <input type="text" name="trajanje"
-    value="<?=$smjer->trajanje?>">
-  </label>
+  <label for="trajanje">Trajanje</label>
+  <input type="text" id="trajanje" 
+  name="trajanje" value="<?=$smjer->trajanje?>">
 
   <label>Cijena
     <input type="text" name="cijena"
